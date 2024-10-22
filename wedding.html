@@ -1,0 +1,932 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Pernikahan dengan Penutup Halaman</title>
+    <style>
+        html, body {
+    overflow-x: hidden; /* Mencegah scroll horizontal */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Style dasar untuk background parallax */
+/*slide1*/
+.info {
+    text-align: center;
+    position: relative;
+    height: 100vh; /* Tinggi full screen */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Background tetap saat di-scroll */
+    visibility: hidden; /* Mengganti display dengan visibility */
+}
+/*slide2*/
+.pengantin {
+    text-align: center;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Background tetap saat di-scroll */
+    visibility: hidden; /* Mengganti display dengan visibility */
+    height: 300px;
+    text-align: center;
+    visibility: hidden; /* Mengganti display dengan visibility */
+    color: black;
+}
+
+/* Bagian kiri dan kanan */
+.overlay-section {
+    display: flex;
+    justify-content: space-between; /* Membagi kedua tabung ke sisi kiri dan kanan */
+    align-items: center;
+    padding: 100px;
+    height: 100vh;
+    box-sizing: border-box;
+    visibility: hidden; /* Mengganti display dengan visibility */
+    color: white;
+}
+
+.tabung1, .tabung2 {
+    flex: 0 1 50%; /* Membagi 50% dari lebar untuk masing-masing tabung */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Gaya tabung 1 dan 2 */
+.tabung1 .cylinder,
+.tabung2 .cylinder {
+    position: absolute;
+    top: 35%;
+    height: 350px;
+    width: 200px;
+    background-image: url('bgcewe.png'); /* Gambar latar belakang */
+    background-size: cover; /* Menyesuaikan ukuran gambar */
+    background-position: center; /* Menempatkan gambar di tengah */
+    color: white;
+}
+
+.cylinder {
+    padding: 20px;
+    border-radius: 50px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    margin: 0 20px;
+    color: white; /* Warna teks putih untuk kontras */
+    transition: transform 0.5s ease-in-out;
+}
+
+/*slide3*/
+.acara {
+    text-align: center;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Background tetap saat di-scroll */
+    visibility: hidden; /* Mengganti display dengan visibility */
+    color: white;
+}
+
+/* pindahin tabung 3 dan 4 */
+.overlay-section2 {
+    display: flex;
+    justify-content: space-between; /* Membagi kedua tabung ke sisi kiri dan kanan */
+    align-items: center;
+    padding: 100px;
+    height: 50vh;
+    box-sizing: border-box;
+    visibility: hidden; /* Mengganti display dengan visibility */
+    color: white;
+}
+
+.tabung3, .tabung4 {
+    flex: 100%; /* Membagi 100% dari lebar untuk masing-masing tabung */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Gaya untuk tabung */
+.tabung3 .cylinder,
+.tabung4 .cylinder {
+
+    top: 100%;
+    height: 300px;
+    width: 150px;
+    background-image: url(''); /* Gambar latar belakang */
+    background-size: cover; /* Menyesuaikan ukuran gambar */
+    background-position: center; /* Menempatkan gambar di tengah */
+    color: white;
+}
+
+.profile-photo {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    transition: transform 0.5s;
+}
+
+.profile-photo:hover {
+    transform: rotate(360deg);
+}
+
+.instagram-icon {
+    width: 30px;
+    height: 30px;
+    margin-top: 10px;
+}
+
+/* pindahin label hitam */
+.label-hitam {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Meratakan teks di tengah */
+    color: white;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.7); /* Mengubah transparansi agar lebih terlihat */
+    margin: 300px;
+    height: 582px;
+    border-radius: 100px / 50px; /* Membuat setengah lingkaran di atas dan bawah */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Menambahkan bayangan untuk efek kedalaman */
+    visibility: hidden; /* Elemen tersembunyi secara default */
+}
+
+
+.label-hitam h3 {
+    font-size: 1rem; /* Ukuran font lebih besar */
+    color: #FFFFFF; /* Mengubah warna teks menjadi emas */
+    margin: 10px 0; /* Jarak atas dan bawah */
+}
+
+.label-hitam h4 {
+    font-size: 0.75rem; /* Ukuran font lebih kecil */
+    color: #FFFFFF; /* Warna putih */
+    margin: 5px 0; /* Jarak atas dan bawah */
+}
+
+.label-hitam h6 {
+    font-size: 0.75rem; /* Ukuran font lebih kecil */
+    color: #FFFFFF; /* Warna abu-abu terang */
+    margin: 15px 0; /* Jarak atas dan bawah */
+}
+.countdown{
+    position: fixed;
+    font-size: 2rem;
+    text-align: center;
+    position: absolute; /* Posisi absolut untuk penempatan */
+    top: 252%; /* Atur posisi vertikal */
+    left: 41.5%; /* Atur posisi horizontal */
+    transform: translate(-50%, -50%); /* Pusatkan */
+    color: white;
+}
+
+#countdown {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+#countdown div {
+    text-align: center;
+    font-size: 24px; /* Ukuran angka */
+}
+
+#countdown span {
+    display: block;
+    font-size: 14px; /* Ukuran teks label (Hari, Jam, Menit, Detik) */
+    color: white; /* Warna teks label */
+    margin-top: 5px;
+}
+
+@media (max-width: 600px) {
+    #countdown {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    #countdown div {
+        font-size: 20px;
+    }
+
+    #countdown span {
+        font-size: 12px;
+    }
+}
+
+
+.label-gelap{
+    margin-left: 25%;
+    padding-top: 5px;
+    padding-bottom: 30px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.7); /* Mengubah transparansi agar lebih terlihat */
+    height: 100;
+    width: 500px;
+    text-align: center;
+}
+
+
+/* Gambar background */
+#section1 {
+    background-image: url('bg1.png');
+}
+
+#section2 {
+    background-image: url('bg2.png');
+    background-position-y: 1px;
+}
+
+#section3 {
+    visibility: hidden; /* Elemen tersembunyi secara default */
+    background-image: url('bg3.png');
+    background-size: cover; /* Membuat background menutupi seluruh area */
+    background-position: center center; /* Memastikan background berada di tengah secara horizontal dan vertikal */
+    height: 100%; /* Mengatur tinggi section agar 100% dari tinggi viewport */
+    margin: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Menambahkan teks di section 1 */
+.text-overlay {
+    position: absolute;
+    top: 50%;
+    left: 70%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+}
+
+/* Style untuk teks di section 1 */
+.text-overlay h1 {
+    font-size: 2rem;
+    margin: 0;
+}
+
+.text-overlay h2 {
+    font-size: 4rem;
+    margin: 10px 0;
+}
+
+.text-overlay h3 {
+    font-size: 2rem;
+    margin: 0;
+}
+
+.galleryhide {
+    margin-top: -275px;
+    text-align: center;
+    visibility: hidden; /* Mengganti display dengan visibility */
+
+}
+
+.gallery {
+    display: grid; 
+    grid-template-columns: repeat(3, 1fr); /* 3 kolom */
+    grid-template-rows: repeat(3, 1fr); /* 3 baris */
+    gap: 10px; /* Jarak antar foto */
+    overflow-x: auto; /* Mengizinkan scroll horizontal */
+    padding: 20px;
+    max-width: 310px; /* Lebar maksimum galeri */
+    margin: auto; /* Meratakan galeri di tengah */
+    border: 2px solid rgba(0, 0, 0, 0.5); /* Mengatur border pada galeri */
+    border-radius: 15px; /* Sudut yang melengkung pada galeri */
+    background-color: rgba(255, 255, 255, 0.9); /* Latar belakang putih dengan transparansi */
+    height: 300px; /* Tinggi galeri untuk membatasi area tampilan */
+    overflow-x: hidden; /* Menyembunyikan scroll vertikal jika ada */
+    margin-top: -20px; /* Menarik galeri ke atas sedikit lebih */
+}
+
+.gallery-item:hover {
+    transform: scale(1.25);
+}
+
+.gallery-container {
+    display: grid; /* Menggunakan grid untuk mengatur foto */
+    grid-template-columns: repeat(3, 1fr); /* 3 kolom */
+    width: max-content; /* Membuat lebar konten sesuai dengan jumlah foto */
+    padding: 0; /* Menghilangkan padding untuk kontainer */
+}
+
+.gallery-item {
+    width:100px; /* Mengisi lebar kolom */
+    height: 100px; /* Menetapkan tinggi yang sama untuk semua foto */
+    border-radius: 5px; /* Sudut foto melengkung */
+    object-fit: cover; /* Memastikan foto memenuhi area */
+}
+
+/* Style untuk penutup halaman awal */
+#cover-page {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    transition: opacity 0.5s ease;
+    background-image: url('jj.png'); /* Path to your background image */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+    background-color: #f0f0f0;
+    cursor: pointer;
+    transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out;
+}
+
+/* Teks penutup halaman */
+#cover-page h1 {
+    text-align: center;
+    font-size: 3rem;
+    cursor: pointer;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    animation: fadeInOut 2s infinite;
+}
+
+@keyframes fadeInOut {
+    0% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+/* Animasi hilang penutup */
+#cover-page.hidden {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 1s ease;
+}
+
+button {
+    background-color: black; /* Ganti dengan warna sesuai desain Anda */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.location-icon {
+    width: 30px; /* Atur ukuran sesuai keinginan Anda */
+    height: auto; /* Memastikan proporsi tetap terjaga */
+    margin-top: 10px; /* Memberikan jarak antara ikon dengan konten lainnya */
+}
+
+.overlay-section3 {
+    background-image: url('');
+    background-size: cover; /* Membuat background menutupi seluruh area */
+    background-position: center center; /* Memastikan background berada di tengah secara horizontal dan vertikal */
+    height: 100%; /* Mengatur tinggi section agar 100% dari tinggi viewport */
+    text-align: center;
+    visibility: hidden; /* Mengganti display dengan visibility */
+    color: black;
+    margin-top: 400px;
+    margin-bottom: 200px;
+}
+
+.penutup {  
+    bottom: 0; /* Menempatkan teks di bagian bawah */
+    width: 100%; /* Memastikan lebar teks mengikuti lebar layar */
+    color: black; /* Warna teks */
+    text-align: center; /* Teks berada di tengah */
+    padding: 30px; /* Tambahkan sedikit padding */
+    z-index: 1000; /* Pastikan teks berada di atas elemen lain */
+}
+
+/* Mengatur font default menjadi serif */
+body {
+    font-family: "Times New Roman", Times, serif;
+}
+
+/* Mengatur font tertentu untuk judul di halaman undangan */
+.text-overlay h1, 
+.text-overlay h2, 
+.text-overlay h3 {
+    font-family: "Times New Roman", Times, serif;
+}
+
+/* Mengatur font untuk bagian pengantin */
+.pengantin h1, .pengantin h3, .pengantin p {
+    font-family: "Times New Roman", Times, serif;
+}
+
+/* Mengatur font untuk hitung mundur */
+.countdown, #countdown div, #countdown span {
+    font-family: "Times New Roman", Times, serif;
+}
+
+/* Mengatur font untuk bagian acara */
+.label-hitam h3, 
+.label-hitam h4, 
+.label-hitam h6 {
+    font-family: "Times New Roman", Times, serif;
+}
+
+/* Mengatur font untuk tabung acara */
+.cylinder h1, 
+.cylinder p {
+    font-family: "Times New Roman", Times, serif;
+}
+
+.cylinder:hover {
+    transform: scale(1.05);
+}
+
+/* Gaya untuk komentar */
+.comment-box {
+    margin-left: 10%;
+    width: 333px;
+    margin-bottom: 5px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+    overflow-wrap: break-word; /* Agar teks panjang bisa terpotong dengan baik */
+
+}
+
+/* Tambahkan properti ini untuk memungkinkan scroll */
+.comment-content {
+    color: black;
+    margin-bottom: -10px;
+    text-align: left;
+    margin-top: -5px; /* Geser ke atas jika dibutuhkan */
+    font-size: 0.8em;
+    max-height: 33.3px; /* Set batas maksimum tinggi untuk komentar */
+    overflow-y: auto; /* Tampilkan scrollbar jika konten lebih dari tinggi maksimum */
+    overflow-wrap: break-word; /* Agar teks panjang bisa terpotong dengan baik */
+}
+
+/* Gaya untuk header komentar */
+.comment-header {
+    display: flex;
+    justify-content: space-between; /* Memisahkan nama dan tanggal ke kanan dan kiri */
+    align-items: center; /* Mengatur posisi vertikal nama dan tanggal agar rata */
+    margin-top: -20px; /* Geser ke atas jika dibutuhkan */
+}
+
+.comment-name {
+    color: black;
+    font-weight: bold;
+    font-size: 0.8em;
+}
+
+.comment-date {
+    font-size: 0.8em;
+    color: #777;
+}
+
+.comment-divider {
+    border-top: 1px solid #eee;
+}
+
+/* Gaya untuk pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pagination a {
+    margin: 0 5px;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    text-decoration: none;
+    color: #333;
+}
+
+.pagination a.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.pagination a:hover {
+    background-color: #ddd;
+}
+
+.pagination a.active {
+    background-color: green; /* Atur warna latar belakang untuk halaman aktif */
+    color: white; /* Atur warna teks untuk halaman aktif */
+}
+
+
+/* Styling untuk input nama */
+.form-input {
+    left: 30%;
+    width: 333px;
+    padding: 10px;
+    margin-bottom: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 0.7rem;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    height: 10px;
+}
+
+/* Styling untuk textarea pesan */
+.form-textarea {
+    width: 320px;
+    padding: 15px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 0.7rem;
+    height: 10px; /* Adjust height as needed */
+    resize: vertical; /* Allow user to resize vertically */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Styling untuk tombol submit */
+.form-button {
+    width: 75px;
+    margin-left: 125px;
+    background-color: #007bff;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.form-button:hover {
+    background-color: #0056b3;
+}
+
+#commentForm{
+    padding-top: 20px;
+    padding-bottom: 5px;
+    margin-left: 75px;
+    margin-right: 450px;
+    background-color: rgba(128, 128, 128, 0.5); /* 50% transparan */
+    border-radius: -10px;
+}
+
+/* Styling tambahan untuk memperbaiki tampilan responsif */
+@media (max-width: 600px) {
+    .form-input, .form-textarea, .form-button {
+        width: 100%;
+    }
+}
+
+#undangan {
+    visibility: hidden; /* Menyembunyikan undangan */
+}
+
+.info, .acara, #section3 {
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+}
+
+#undangan, .overlay-section3 {
+    transition: opacity 1s ease-in-out;
+}
+
+
+    </style>
+</head>
+<body>
+
+    <!-- Penutup halaman undangan -->
+    <div id="cover-page">
+    <div class="cover-content">
+        
+    </div>
+</div>
+
+    <!-- Background pertama dengan efek parallax -->
+    <div class="info" id="section1">
+        <div class="text-overlay">
+            <h1>The Wedding</h1>
+            <h2>Jane & Jon</h2>
+            <h3>1 Desember 2024</h3>
+        </div>
+    </div>
+
+<br>
+<br>
+    <!-- Overlay penutup pertama -->
+    <div class="pengantin">
+    <h3>Maha Suci Allah Subhanahu wa Ta'ala yang telah menciptakan makhluk-Nya berpasang-pasangan.<br> Ya Allah, perkenankanlah dan Ridhoilah Pernikahan Kami.</h3>
+
+
+    <div class="overlay-section">
+        <div class="tabung1">
+            <div class="cylinder">
+                <h1>Jane</h1>
+                <img src="cewe.png" alt="Nama Pengantin Wanita" class="profile-photo">
+                <p>Putri dari <br> Bapak Richard <br> & <br> Ibu Rahmah</p>
+                <a href="https://instagram.com/username_jane" target="_blank">
+                    <img src="instagram_icon.jpg" alt="Instagram" class="instagram-icon">
+                </a>
+            </div>
+        </div>
+        <div class="tabung2">
+            <div class="cylinder">
+                <h1>Jon</h1>
+                <img src="cowo.png" alt="Nama Pengantin Pria" class="profile-photo">
+                <p>Putra dari <br> Bapak David <br> & <br> Ibu Nur</p>
+                <a href="https://instagram.com/username_jon" target="_blank">
+                    <img src="instagram_icon.jpg" alt="Instagram" class="instagram-icon">
+                </a>
+            </div>
+        </div>
+    </div>
+    </div>
+
+     <!-- Background kedua dengan efek parallax -->
+<div class="acara" id="section2">
+    <div class="label-hitam">
+        <h3>Hitung Mundur</h3>
+        <h4>Hari Bahagia Kami</h4>
+        <div id="countdown" class="countdown"></div> <!-- Elemen untuk hitung mundur --><br><br><br><br>
+        <h6>Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri,<br> agar kamu cenderung dan merasa tenteram kepadanya,<br> dan Dia menjadikan di antaramu rasa kasih dan sayang. Sungguh,<br> pada yang demikian itu benar-benar terdapat tanda-tanda (kebesaran Allah) bagi kaum yang berpikir. <br><br> - Q.S. Ar-Rum : 21 -</h6>
+        <div class="overlay-section2">
+            <div class="tabung3">
+                <div class="cylinder">
+                    <h3>Akad Nikah</h3>
+                    <img src="akad.jpeg" alt="Nama Pengantin Wanita" class="profile-photo">
+                    <p>December <br> Minggu | 1 | 2024 <br> 09:00 - 10:00 <br> Masjid Baitul Rahman</p>
+                    <a href="https://www.google.com/maps" target="_blank">
+                    <img src="lokasi.png" alt="Lokasi" class="location-icon">
+                    </a>
+                </div>
+            </div>
+            <div class="tabung4">
+                <div class="cylinder">
+                    <h3>Resepsi Intimate</h3>
+                    <img src="resepsi.jpeg" alt="Nama Pengantin Pria" class="profile-photo">
+                    <p>December <br> Minggu | 1 | 2024 <br> 10:00 - 17:00 <br>Gedung Pernikahan</p>
+                    <a href="https://www.google.com/maps" target="_blank">
+                        <img src="lokasi.png" alt="Lokasi" class="location-icon">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    
+    <div class="galleryhide">
+    <h1>Gallery Moment</h1><br>
+    <div class="gallery">
+    <div class="gallery-container">
+        <img src="1.jpeg" alt="Foto 1" class="gallery-item">
+        <img src="2.jpeg" alt="Foto 2" class="gallery-item">
+        <img src="3.jpeg" alt="Foto 3" class="gallery-item">
+        <img src="4.jpeg" alt="Foto 4" class="gallery-item">
+        <img src="5.jpeg" alt="Foto 5" class="gallery-item">
+        <img src="6.jpeg" alt="Foto 6" class="gallery-item">
+        <img src="7.jpeg" alt="Foto 7" class="gallery-item">
+        <img src="8.jpeg" alt="Foto 8" class="gallery-item">
+        <img src="9.jpeg" alt="Foto 9" class="gallery-item">
+        <img src="10.jpeg" alt="Foto 10" class="gallery-item">
+        <img src="11.jpeg" alt="Foto 11" class="gallery-item">
+        <img src="12.jpeg" alt="Foto 12" class="gallery-item">
+        <img src="13.jpeg" alt="Foto 13" class="gallery-item">
+        <img src="14.jpeg" alt="Foto 14" class="gallery-item">
+        <img src="15.jpeg" alt="Foto 15" class="gallery-item">
+    </div>
+</div>
+</div><br>
+
+    <!-- Background ketiga dengan efek parallax -->
+
+<div id="section3">
+    <div class="label-gelap">
+        <div id="undangan" style="visibility: hidden;">
+            <h5>Dalam mendukung kelangsungan acara pernikahan kami yang bersifat intim dan terbatas,<br> mohon kesediaannya untuk mengisi kolom kehadiran pada undangan ini.<br> Kehadiran Anda sangat berarti bagi kami.<br> Terima kasih.</h5>
+        </div>
+        <h5 class="comments">Doa & Ucapan</h5>
+
+        <!-- Form untuk mengirim komentar -->
+        <form id="commentForm">
+            <input type="text" name="name" placeholder="Nama..." required class="form-input"><br>
+            <textarea name="comment" placeholder="Ucapan..." required class="form-textarea"></textarea><br>
+            <button type="submit" class="form-button">Kirim Pesan</button>
+
+            <h3>Pesan:</h3>
+            <div id="comments">
+            
+        </div>
+
+        <div id="pagination" class="pagination">
+    
+</div>
+
+</div>
+</div>
+
+    </div>
+</div>
+        </form>
+
+        
+
+        <!-- Bagian untuk menampilkan komentar -->
+        
+    <!-- Overlay penutup ketiga -->
+    <div class="overlay-section3">
+        <div class="penutup">
+        <h5>Terima Kasih</h5>
+        <h2>Jane & Jon</h2>
+    </div>
+    </div>
+
+    <script>
+document.getElementById('cover-page').addEventListener('click', function() {
+    // Menghilangkan cover page
+    this.classList.add('hidden');
+
+    // Menampilkan semua bagian dengan visibility: hidden
+    document.getElementById('section1').style.visibility = 'visible';
+    document.getElementById('section2').style.visibility = 'visible';
+    document.getElementById('section3').style.visibility = 'visible';
+    
+    // Menampilkan elemen overlay-section (tabung Akad Nikah & Resepsi)
+    var overlaySections = document.getElementsByClassName('overlay-section');
+    var overlaySections = document.getElementsByClassName('overlay-section2');
+    for (var i = 0; i < overlaySections.length; i++) {
+        overlaySections[i].style.visibility = 'visible';
+    }
+
+    // Menampilkan bagian lainnya jika ada
+    document.querySelector('.pengantin').style.visibility = 'visible';
+    document.querySelector('.gallery').style.visibility = 'visible';
+    document.querySelector('.overlay-section3').style.visibility = 'visible';
+    document.querySelector('.label-hitam').style.visibility = 'visible';
+    
+});
+
+
+// Fungsi untuk mengubah visibility menjadi visible
+function showInvitation() {
+    // Menyembunyikan halaman penutup dan menampilkan konten
+    document.getElementById("cover-page").classList.add("hidden");
+
+    // Menampilkan semua elemen yang sebelumnya disembunyikan dengan visibility: hidden
+    document.getElementById("section1").style.visibility = "visible";
+    document.getElementById("section2").style.visibility = "visible";
+    document.getElementById("section3").style.visibility = "visible";
+    
+    // Menampilkan elemen-elemen lain (seperti 'pengantin' dan 'overlay-section')
+    document.querySelector(".pengantin").style.visibility = "visible";
+    document.querySelector(".overlay-section").style.visibility = "visible";
+    document.querySelector(".overlay-section2").style.visibility = "visible";
+    document.querySelector(".gallery").style.visibility = "visible";
+    document.querySelector(".overlay-section3").style.visibility = "visible";
+    document.querySelector(".galleryhide").style.visibility = "visible";
+}
+
+// Event listener untuk ketika cover-page diklik
+document.getElementById("cover-page").addEventListener("click", showInvitation);
+
+// Set the date we're counting down to
+var countDownDate = new Date("Dec 1, 2024 00:00:00").getTime();
+
+// Update the countdown every 1 second
+var x = setInterval(function() {
+
+    // Get the current time
+    var now = new Date().getTime();
+
+    // Find the distance between now and the countdown date
+    var distance = countDownDate - now;
+
+    // Time calculations for days, hours, minutes, and seconds
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    // Output the result in an element with id="countdown"
+    document.getElementById("countdown").innerHTML = 
+        `<div>${days}<br><span>Hari</span></div> 
+         <div>${hours}<br><span>Jam</span></div>
+         <div>${minutes}<br><span>Menit</span></div> 
+         <div>${seconds}<br><span>Detik</span></div>`;
+
+    // If the countdown is over, display text
+    if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("countdown").innerHTML = "Acara sudah dimulai!";
+    }
+}, 1000);
+
+document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("undangan").style.visibility = "visible";
+});
+
+// Menghitung jumlah komentar yang sudah ditampilkan
+let displayedComments = 0;
+const maxComments = 5;
+
+document.getElementById('commentForm').onsubmit = function (event) {
+    event.preventDefault(); // Mencegah pengiriman form yang normal
+
+    var formData = new FormData(this); // Mengambil data dari form
+
+    fetch('submit_comment.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.text())
+    .then(data => {
+        // Menambahkan komentar baru di bagian atas
+        document.getElementById('comments').insertAdjacentHTML('afterbegin', data); // Menambahkan komentar baru
+
+        // Menambahkan jumlah komentar yang ditampilkan
+        displayedComments++;
+
+        // Jika jumlah komentar melebihi batas maksimum, hapus yang paling bawah
+        if (displayedComments > maxComments) {
+            const commentBoxes = document.querySelectorAll('.comment-box');
+            commentBoxes[commentBoxes.length - 1].remove(); // Hapus komentar paling bawah
+            displayedComments--; // Kurangi jumlah yang ditampilkan
+        }
+
+        // Mengosongkan input setelah pengiriman
+        this.reset();
+    })
+    .catch(error => console.error('Error:', error));
+};
+
+// Fungsi untuk memuat komentar berdasarkan halaman
+function loadComments(page) {
+    fetch('load_comments.php?page=' + page) // Ganti dengan path file PHP Anda untuk memuat komentar
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('comments').innerHTML = data; // Mengisi komentar baru
+            // Memperbarui URL untuk menyertakan nomor halaman
+            history.pushState(null, '', '?page=' + page);
+        })
+        .catch(error => console.error('Error:', error));
+}
+
+// Event listener untuk pagination
+document.getElementById('pagination').addEventListener('click', function(event) {
+    const target = event.target;
+    if (target.tagName === 'A') {
+        event.preventDefault(); // Mencegah pengalihan halaman
+        const page = target.getAttribute('data-page'); // Ambil nomor halaman dari atribut data-page
+        loadComments(page); // Panggil fungsi loadComments untuk memuat komentar
+    }
+});
+
+// Set the date we're counting down to
+var countDownDate = new Date("Dec 1, 2024 00:00:00").getTime();
+
+// Update the countdown every 1 second
+var x = setInterval(function() {
+
+    // Get the current time
+    var now = new Date().getTime();
+
+    // Find the distance between now and the countdown date
+    var distance = countDownDate - now;
+
+    // Time calculations for days, hours, minutes, and seconds
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    // Output the result in an element with id="countdown"
+    document.getElementById("countdown").innerHTML = 
+        `<div>${days}<br><span>Hari</span></div> 
+         <div>${hours}<br><span>Jam</span></div>
+         <div>${minutes}<br><span>Menit</span></div> 
+         <div>${seconds}<br><span>Detik</span></div>`;
+
+    // If the countdown is over, display text
+    if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("countdown").innerHTML = "Acara sudah dimulai!";
+    }
+}, 1000);
+
+</script>
+
+</body>
+</html>
