@@ -604,6 +604,53 @@ body {
     transition: opacity 1s ease-in-out;
 }
 
+@media (max-width: 768px) {
+    #cover-page h1 {
+        font-size: 24px; /* Sesuaikan ukuran teks di mobile */
+    }
+
+    .info h1, .info h2, .info h3 {
+        font-size: 18px; /* Perkecil ukuran font */
+    }
+
+    .text-overlay {
+        padding: 10px; /* Kurangi padding */
+    }
+
+    .pengantin .cylinder {
+        display: block;
+        width: 100%; /* Ubah layout menjadi satu kolom */
+        text-align: center; /* Ratakan teks */
+    }
+
+    .pengantin img {
+        width: 80%; /* Sesuaikan ukuran gambar */
+    }
+
+    .overlay-section2 {
+        display: block;
+        text-align: center;
+    }
+
+    .gallery-container {
+        grid-template-columns: repeat(2, 1fr); /* Tampilkan 2 foto per baris */
+    }
+
+    .gallery-item {
+        width: 100%; /* Pastikan gambar menyesuaikan lebar kontainer */
+    }
+
+    .label-gelap, .label-hitam {
+        padding: 10px;
+        text-align: center;
+    }
+
+    .cylinder img {
+        max-width: 80%;
+        height: auto;
+    }
+}
+
 
     </style>
 </head>
