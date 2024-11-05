@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,6 +10,39 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+/* Menambahkan teks di section 1 */
+.text-overlay {
+    position: absolute;
+    top: 50%;
+    left: 70%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+}
+
+/* Style untuk teks di section 1 */
+.text-overlay h1 {
+    font-size: 2rem;
+    margin: 0;
+}
+
+.text-overlay h2 {
+    font-size: 4rem;
+    margin: 10px 0;
+}
+
+.text-overlay h3 {
+    font-size: 2rem;
+    margin: 0;
+}
+
+/* Mengatur font tertentu untuk judul di halaman undangan */
+.text-overlay h1, 
+.text-overlay h2, 
+.text-overlay h3 {
+    font-family: "Times New Roman", Times, serif;
 }
 
 /* Style dasar untuk background parallax */
@@ -209,22 +241,6 @@
     margin-top: 5px;
 }
 
-@media (max-width: 600px) {
-    #countdown {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    #countdown div {
-        font-size: 20px;
-    }
-
-    #countdown span {
-        font-size: 12px;
-    }
-}
-
-
 .label-gelap{
     margin-left: 25%;
     padding-top: 5px;
@@ -258,32 +274,6 @@
     background-color: #f9f9f9;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Menambahkan teks di section 1 */
-.text-overlay {
-    position: absolute;
-    top: 50%;
-    left: 70%;
-    transform: translate(-50%, -50%);
-    color: white;
-    text-align: center;
-}
-
-/* Style untuk teks di section 1 */
-.text-overlay h1 {
-    font-size: 2rem;
-    margin: 0;
-}
-
-.text-overlay h2 {
-    font-size: 4rem;
-    margin: 10px 0;
-}
-
-.text-overlay h3 {
-    font-size: 2rem;
-    margin: 0;
 }
 
 .galleryhide {
@@ -416,13 +406,6 @@ button {
 
 /* Mengatur font default menjadi serif */
 body {
-    font-family: "Times New Roman", Times, serif;
-}
-
-/* Mengatur font tertentu untuk judul di halaman undangan */
-.text-overlay h1, 
-.text-overlay h2, 
-.text-overlay h3 {
     font-family: "Times New Roman", Times, serif;
 }
 
@@ -583,13 +566,6 @@ body {
     border-radius: -10px;
 }
 
-/* Styling tambahan untuk memperbaiki tampilan responsif */
-@media (max-width: 600px) {
-    .form-input, .form-textarea, .form-button {
-        width: 100%;
-    }
-}
-
 #undangan {
     visibility: hidden; /* Menyembunyikan undangan */
 }
@@ -604,101 +580,309 @@ body {
     transition: opacity 1s ease-in-out;
 }
 
-/* Bagian dasar untuk membuat layout responsif */
-html, body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Arial', sans-serif;
-    width: 100%;
-    height: 100%;
-    overflow-x: hidden;
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-/* Membuat elemen-elemen agar responsif */
-section {
-    padding: 10px;
-}
-
-/* Aturan untuk layout di layar yang lebih kecil */
+/* Media query untuk perangkat mobile */
 @media (max-width: 768px) {
-    .container {
-        padding: 10px;
+    .text-overlay {
+        left: 70%; /* Pindahkan teks ke tengah */
+        transform: translate(-50%, -50%); /* Pastikan teks tetap terpusat */
     }
 
-    /* Penyesuaian font-size agar mudah dibaca di mobile */
-    h1, h2, h3, h4, h5, h6 {
-        font-size: 1.5em;
+    .text-overlay h1 {
+        font-size: 1.5rem; /* Ukuran font lebih kecil */
     }
 
-    p, li {
-        font-size: 1em;
+    .text-overlay h2 {
+        font-size: 2.5rem; /* Ukuran font lebih kecil */
     }
 
-    /* Responsif untuk gambar */
-    img {
-        max-width: 100%;
-        height: auto;
+    .text-overlay h3 {
+        font-size: 1.5rem; /* Ukuran font lebih kecil */
     }
 
-    /* Layout grid sederhana */
-    .pengantin, .gallery {
-        display: block;
-        width: 100%;
-        padding: 10px;
-        box-sizing: border-box;
+    .info {
+        height: 70vh; /* Mengurangi tinggi untuk tampilan mobile */
+        background-attachment: scroll; /* Mengubah menjadi scroll agar lebih responsif */
     }
 
-    /* Bagian countdown agar tetap rapi */
-    #countdown div {
-        display: inline-block;
-        width: 22%;
-        text-align: center;
-        margin: 10px 0;
-    }
 
-    /* Overlay sections agar tidak terlalu besar di layar kecil */
-    .overlay-section, .overlay-section2, .overlay-section3 {
-        padding: 20px;
-        font-size: 1.2em;
-    }
-
-    /* Komentar responsif */
-    .comment-box {
-        padding: 15px;
-        margin: 10px 0;
-        border-radius: 5px;
-    }
+/*slide2*/
+.pengantin {
+    bottom: 10%;
+    text-align: center;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Background tetap saat di-scroll */
+    visibility: hidden; /* Mengganti display dengan visibility */
+    height: 500px; /* Tinggi tetap untuk desktop */
+    color: black;
 }
 
-/* Aturan untuk layar sangat kecil (max-width: 480px) */
-@media (max-width: 480px) {
-    h1 {
-        font-size: 1.2em;
+.pengantin h3{
+    margin-top: -25px;
+}
+
+.overlay-section {
+        flex-direction: column; /* Menjadikan tabung stack secara vertikal */
+        padding: 50px 20px; /* Mengurangi padding untuk perangkat kecil */
+        height: auto; /* Mengatur tinggi menjadi otomatis */
+    }
+    
+    .tabung1, .tabung2 {
+        flex: 0 1 100%; /* Membagi 100% lebar untuk masing-masing tabung */
     }
 
-    .overlay-section, .overlay-section2, .overlay-section3 {
-        padding: 10px;
-        font-size: 1em;
+    .tabung1{
+        margin-right: 200px;
+    }
+
+    .tabung2{
+        margin-left: 200px;
+    }
+
+
+    .tabung1 h1, img, p, a{
+        margin-top: -20px;
+    }
+
+    .tabung2 h1, img, p, a{
+        margin-top: -20px;
+    }
+
+    .tabung1 .cylinder,
+    .tabung2 .cylinder {
+        height: 275px; /* Mengurangi tinggi untuk tampilan mobile */
+        width: 100px; /* Mengurangi lebar untuk tampilan mobile */
+        top: 25%; /* Menyesuaikan posisi untuk tampil lebih baik di perangkat kecil */
+    }
+
+
+
+
+/* pindahin tabung 3 dan 4 */
+.overlay-section2 {
+    display: flex;
+    justify-content: space-between; /* Membagi kedua tabung ke sisi kiri dan kanan */
+    align-items: center;
+    padding: 100px;
+    height: 50px;
+    box-sizing: border-box;
+    visibility: hidden; /* Mengganti display dengan visibility */
+    color: white;
+}
+
+.tabung3 {
+    margin-bottom: -50px;
+    margin-left: -150px;
+    flex: 100%; /* Membagi 100% dari lebar untuk masing-masing tabung */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tabung4 {
+    margin-bottom: -50px;
+    margin-left: -50px;
+}
+
+/* Gaya untuk tabung */
+.tabung3 .cylinder,
+.tabung4 .cylinder {
+    top: 100%;
+    height: 230px;
+    width: 150px;
+    background-image: url(''); /* Gambar latar belakang */
+    background-size: cover; /* Menyesuaikan ukuran gambar */
+    background-position: center; /* Menempatkan gambar di tengah */
+    color: white;
+}
+
+.profile-photo {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    transition: transform 0.5s;
+    margin-bottom: 20px;
+}
+
+.profile-photo:hover {
+    transform: rotate(360deg);
+}
+
+.acara-photo {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    transition: transform 0.5s;
+    margin-top: 5px;
+    margin-bottom: 20px;
+}
+
+.acara-photo:hover {
+    transform: rotate(360deg);
+}
+
+.instagram-icon {
+    width: 30px;
+    height: 30px;
+    margin-top: 10px;
+}
+
+/*slide3*/
+.acara {
+    height: 810px;
+    text-align: center;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Background tetap saat di-scroll */
+    visibility: hidden; /* Mengganti display dengan visibility */
+    color: white;
+}
+
+.label-hitam {
+
+        margin: 20px 20px; /* Mengurangi margin untuk perangkat kecil */
+        height: 750px; /* Mengatur tinggi menjadi otomatis */
+        width: 300px;
+        border-radius: 50px; /* Mengurangi radius border untuk tampilan lebih baik */
+        padding: 15px; /* Mengurangi padding untuk perangkat kecil */
+    }
+
+    .label-hitam h3 {
+        font-size: 1.5rem; /* Meningkatkan ukuran font untuk tampilan kecil */
+    }
+
+    .label-hitam h4, .label-hitam h6 {
+        font-size: 0.9rem; /* Meningkatkan ukuran font untuk tampilan kecil */
+    }
+
+    .countdown {
+        font-size: 1.5rem; /* Mengurangi ukuran font countdown untuk tampilan kecil */
+        top: 240%; /* Menyesuaikan posisi vertikal untuk tampilan kecil */
+        right: 40%;
     }
 
     #countdown div {
-        width: 45%; /* agar lebih kecil lagi di layar kecil */
-        margin: 5px 0;
+        font-size: 18px; /* Mengurangi ukuran angka */
     }
 
-    /* Penyesuaian tombol dan form */
-    button, input, textarea {
-        width: 100%;
-        font-size: 1em;
-        padding: 10px;
-        margin: 5px 0;
+    #countdown span {
+        font-size: 12px; /* Mengurangi ukuran teks label (Hari, Jam, Menit, Detik) */
     }
+
+.label-gelap {
+    margin-left: 25%;
+    padding-top: 5px;
+    padding-bottom: 30px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.7); /* Mengubah transparansi agar lebih terlihat */
+    height: auto; /* Ubah menjadi auto untuk responsivitas */
+    width: 500px;
+    text-align: center;
+}
+
+/* Gambar background */
+#section1 {
+    background-image: url('bg1.png');
+}
+
+#section2 {
+    background-image: url('bg2.png');
+    background-position-y: 1px;
+
+}
+
+#section3 {
+    visibility: hidden; /* Elemen tersembunyi secara default */
+    background-image: url('bg3.png');
+    background-size: cover; /* Membuat background menutupi seluruh area */
+    background-position: center center; /* Memastikan background berada di tengah secara horizontal dan vertikal */
+    height: 100%; /* Mengatur tinggi section agar 100% dari tinggi viewport */
+    margin: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.galleryhide {
+    margin-top: 20px;
+    text-align: center;
+    visibility: hidden; /* Mengganti display dengan visibility */
+}
+
+.gallery {
+    display: grid; 
+    grid-template-columns: repeat(3, 1fr); /* 3 kolom */
+    grid-template-rows: repeat(3, 1fr); /* 3 baris */
+    gap: 10px; /* Jarak antar foto */
+    overflow-x: auto; /* Mengizinkan scroll horizontal */
+    padding: 20px;
+    max-width: 310px; /* Lebar maksimum galeri */
+    margin: auto; /* Meratakan galeri di tengah */
+    border: 2px solid rgba(0, 0, 0, 0.5); /* Mengatur border pada galeri */
+    border-radius: 15px; /* Sudut yang melengkung pada galeri */
+    background-color: rgba(255, 255, 255, 0.9); /* Latar belakang putih dengan transparansi */
+    height: 300px; /* Tinggi galeri untuk membatasi area tampilan */
+    overflow-x: hidden; /* Menyembunyikan scroll vertikal jika ada */
+    margin-top: -20px; /* Menarik galeri ke atas sedikit lebih */
+}
+
+.gallery-item:hover {
+    transform: scale(1.25);
+}
+
+.gallery-container {
+    display: grid; /* Menggunakan grid untuk mengatur foto */
+    grid-template-columns: repeat(3, 1fr); /* 3 kolom */
+    width: max-content; /* Membuat lebar konten sesuai dengan jumlah foto */
+    padding: 0; /* Menghilangkan padding untuk kontainer */
+}
+
+.gallery-item {
+    width: 100px; /* Mengisi lebar kolom */
+    height: 100px; /* Menetapkan tinggi yang sama untuk semua foto */
+    border-radius: 5px; /* Sudut foto melengkung */
+    object-fit: cover; /* Memastikan foto memenuhi area */
+}
+
+    #section1, #section2, #section3 {
+        padding: 10px; /* Mengurangi padding pada section */
+        margin: 10px; /* Mengurangi margin pada section */
+    }
+
+    .label-gelap {
+        margin-left: 0; /* Menghapus margin kiri pada tampilan sangat kecil */
+        width: 100%; /* Mengatur lebar menjadi 100% untuk tampilan sangat kecil */
+        padding: px; /* Mengurangi padding lebih lanjut */
+    }
+
+    .gallery {
+        grid-template-columns: repeat(1, 1fr); /* Mengubah menjadi 1 kolom pada perangkat kecil */
+    }
+
+    .gallery-item {
+        width: 100px; /* Mengurangi lebar foto untuk tampilan sangat kecil */
+        height: 100px; /* Mengurangi tinggi foto untuk tampilan sangat kecil */
+    }
+
+
+    .comment-box, .form-input, .form-textarea {
+        width: 200px; /* Mengatur lebar untuk layar kecil */
+    }
+    
+    .pagination a {
+        padding: 6px 10px; /* Mengurangi padding untuk layar kecil */
+        font-size: 0.7em; /* Mengurangi ukuran font */
+    }
+
+    .form-button {
+        width: 70px; /* Mengatur tombol agar penuh */
+        margin-left: 85px; /* Menghilangkan margin kiri */
+    }
+
+
+
 }
 
     </style>
@@ -763,7 +947,7 @@ section {
             <div class="tabung3">
                 <div class="cylinder">
                     <h3>Akad Nikah</h3>
-                    <img src="akad.jpeg" alt="Nama Pengantin Wanita" class="profile-photo">
+                    <img src="akad.jpeg" alt="Nama Pengantin Wanita" class="acara-photo">
                     <p>December <br> Minggu | 1 | 2024 <br> 09:00 - 10:00 <br> Masjid Baitul Rahman</p>
                     <a href="https://www.google.com/maps" target="_blank">
                     <img src="lokasi.png" alt="Lokasi" class="location-icon">
@@ -773,7 +957,7 @@ section {
             <div class="tabung4">
                 <div class="cylinder">
                     <h3>Resepsi Intimate</h3>
-                    <img src="resepsi.jpeg" alt="Nama Pengantin Pria" class="profile-photo">
+                    <img src="resepsi.jpeg" alt="Nama Pengantin Pria" class="acara-photo">
                     <p>December <br> Minggu | 1 | 2024 <br> 10:00 - 17:00 <br>Gedung Pernikahan</p>
                     <a href="https://www.google.com/maps" target="_blank">
                         <img src="lokasi.png" alt="Lokasi" class="location-icon">
@@ -1021,6 +1205,26 @@ var x = setInterval(function() {
         document.getElementById("countdown").innerHTML = "Acara sudah dimulai!";
     }
 }, 1000);
+
+document.addEventListener("DOMContentLoaded", function () {
+    function adjustLayout() {
+        if (window.innerWidth <= 768) {
+            document.getElementById("countdown").style.fontSize = "12px"; // Menyesuaikan ukuran font countdown untuk mobile
+            const overlaySections = document.querySelectorAll('.overlay-section, .overlay-section2, .overlay-section3');
+            overlaySections.forEach(section => {
+                section.style.margin = "0 auto";
+                section.style.width = "100%";
+            });
+        }
+    }
+
+    // Panggil fungsi saat pertama kali halaman dimuat
+    adjustLayout();
+
+    // Tambahkan event listener saat ukuran layar berubah
+    window.addEventListener('resize', adjustLayout);
+});
+
 
 </script>
 
